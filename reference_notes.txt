@@ -1,0 +1,16 @@
+Sandbox-master patch notes (v2)
+
+Fixes applied:
+1) Fixed Python IndentationError / broken models list in main.py:
+   - Replaced the truncated 'models_to_load' list (it contained '...' and a missing comma).
+   - Ensured the model preload loop is indented correctly inside load_assets().
+
+2) Prevented Ursina OBJ loader crash: 'colors length mismatch'
+   - Stripped 'mtllib', 'usemtl', 'usemap' lines from all assets/**/*.obj files.
+   - Backed up original .obj files in assets/_backup_original_objs/
+
+If you want to revert the OBJ change:
+- Copy the originals back from assets/_backup_original_objs/ to assets/ (same relative paths).
+
+Run:
+- py main.py
