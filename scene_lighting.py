@@ -10,7 +10,7 @@ class SceneLighting(Entity):
                  shadow_filter_radius = 3.0, shadow_filter_samples = 10.0, soft_shadows = True,
                  sky_texture = None, sky_color = (1.0, 1.0, 1.0, 1.5), gamma = 2.0):
 
-        self.add_to_scene_entities = False
+        super().__init__(add_to_scene_entities = False)
         self.player = player
         self.shadow_camera_direction_offset = (shadow_size / 2.0) * shadow_camera_direction_offset
 
