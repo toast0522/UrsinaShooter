@@ -1,5 +1,4 @@
 from ursina import *
-import threading
 
 from player import Player
 from enemy import Enemy, BigEnemy
@@ -54,10 +53,9 @@ def load_assets():
         load_texture(t)
 
 try:
-    asset_thread = threading.Thread(target=load_assets, daemon=True)
-    asset_thread.start()
+    invoke(load_assets)
 except Exception as e:
-    print("error starting thread", e)
+    print("error starting asset preload", e)
 
 player = Player((-60, 50, -16)) # Flat: (-47, 50, -94) # Rope: (-61, 100, 0)
 player.disable()
