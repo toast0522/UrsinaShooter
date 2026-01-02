@@ -1,4 +1,5 @@
 from ursina import *
+from direct.stdpy import thread
 
 from player import Player
 from enemy import Enemy, BigEnemy
@@ -26,26 +27,14 @@ scene.fog_density = 0.001
 # Starting new thread for assets
 def load_assets():
     models_to_load = [
-        "floatingislands",
-        "desertedsands",
-        "mountainous_valley",
-        "jumppad",
-        "particle",
-        "particles",
-        "enemy",
-        "bigenemy",
-        "pistol",
-        "shotgun",
-        "rifle",
-        "minigun",
-        "minigun-barrel",
-        "rocket-launcher",
-        "rocket",
-        "bullet",
+        "floatingislands", "desertedsands", "mountainous_valley", "jumppad", "particle", "particles", "enemy", "bigenemy" "pistol", 
+        "shotgun", "rifle", "pistol", "minigun", "minigun-barrel", "rocket-launcher", "rocket", "bullet",
     ]
+
     textures_to_load = [
         "level", "particle", "destroyed", "jetpack", "sky", "rope", "hit"
     ]
+
     for i, m in enumerate(models_to_load):
         load_model(m)
 
@@ -53,9 +42,9 @@ def load_assets():
         load_texture(t)
 
 try:
-    invoke(load_assets)
+    thread.start_new_thread(function = load_assets, args = "")
 except Exception as e:
-    print("error starting asset preload", e)
+    print("error starting thread", e)
 
 player = Player((-60, 50, -16)) # Flat: (-47, 50, -94) # Rope: (-61, 100, 0)
 player.disable()
