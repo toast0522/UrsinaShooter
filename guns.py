@@ -375,7 +375,7 @@ class Shotgun(Gun):
 class Rifle(Gun):
     def __init__(self, player, equipped = True, **kwargs):
         super().__init__(
-            model = "rifle.obj",
+            model = "rifle",
             texture = "level.png",
             player = player,
             equipped = equipped,
