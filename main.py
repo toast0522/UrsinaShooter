@@ -1,5 +1,5 @@
 from ursina import *
-from direct.stdpy import thread
+import threading
 
 from player import Player
 from enemy import Enemy, BigEnemy
@@ -54,7 +54,8 @@ def load_assets():
         load_texture(t)
 
 try:
-    thread.start_new_thread(function = load_assets, args = "")
+    asset_thread = threading.Thread(target=load_assets, daemon=True)
+    asset_thread.start()
 except Exception as e:
     print("error starting thread", e)
 
